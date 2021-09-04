@@ -128,22 +128,10 @@
                         <div class="collapse" id="collapseDashboards" data-parent="#accordionSidenav">
                             <nav class="sidenav-menu-nested nav accordion" id="accordionSidenavPages">
                                 <a class="nav-link" href="{{ route('sparepart.index')}}">
-                                    Sparepart
-                                </a>
-                                <a class="nav-link" href="{{ route('merk-sparepart.index')}}">
-                                    Merk Sparepart
-                                </a>
-                                <a class="nav-link" href="{{ route('jenis-sparepart.index')}}">
-                                    Jenis Sparepart
+                                    Sparepart & Pengajuan
                                 </a>
                                 <a class="nav-link" href="{{ route('supplier.index')}}">
                                     Supplier
-                                </a>
-                                <a class="nav-link" href="{{ route('konversi.index')}}">
-                                    Konversi
-                                </a>
-                                <a class="nav-link" href="{{ route('kemasan.index')}}">
-                                    Kemasan
                                 </a>
                                 <a class="nav-link" href="{{ route('gudang.index')}}">
                                     Gudang

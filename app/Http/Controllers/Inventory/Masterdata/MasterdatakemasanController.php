@@ -18,7 +18,7 @@ class MasterdatakemasanController extends Controller
      */
     public function index()
     {
-        $kemasan = Kemasan::get();
+        $kemasan = Kemasan::where('status_kemasan','=','Aktif')->get();
 
         return view('pages.inventory.masterdata.kemasan', compact('kemasan'));
     }
@@ -41,11 +41,12 @@ class MasterdatakemasanController extends Controller
      */
     public function store(MasterdataKemasanrequest $request)
     {
-        $request['id_bengkel'] = Auth::user()->id_bengkel;
-        $data = $request->all();
-       
-        Kemasan::create($data);
-        return redirect()->back()->with('messageberhasil','Data Kemasan Berhasil ditambahkan');
+        $kemasan = new Kemasan;
+        $kemasan->nama_kemasan = $request->nama_kemasan;
+        $kemasan->status_kemasan = 'Tidak Aktif';
+
+        $kemasan->save();
+        return redirect()->back()->with('messageberhasil','Data Kemasan Berhasil diajukan - Mohon ditunggu untuk Approval Data');
     }
 
     /**

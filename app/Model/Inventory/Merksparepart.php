@@ -21,6 +21,7 @@ class Merksparepart extends Model
     	'kode_merk',
         'id_bengkel',
     	'merk_sparepart',
+        'status_merk'
     ];
 
     protected $hidden =[ 

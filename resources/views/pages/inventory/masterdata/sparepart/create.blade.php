@@ -9,22 +9,43 @@
                 <div class="row align-items-center justify-content-between pt-3">
                     <div class="col-auto mb-3">
                         <h1 class="page-header-title">
-                            <div class="page-header-icon"><i class="fas fa-cog"></i></div>
-                            Pengajuan Tambah Data Sparepart
+                            <div class="page-header-icon"><i class="fas fa-warehouse"></i></div>
+                            Master Data
                         </h1>
-                    </div>
-                    <div class="col-12 col-xl-auto mb-3">
-                        <a href="{{ route('sparepart.index') }}"
-                            class="btn btn-sm btn-light text-primary mr-2">Kembali</a>
                     </div>
                 </div>
             </div>
         </div>
     </header>
-
-
-
-    <div class="container">
+   
+    <!-- Main page content-->
+    <div class="container mt-4">
+        <!-- Account page navigation-->
+        <nav class="nav nav-borders">
+            <a class="nav-link" href="{{ route('sparepart.index') }}">Sparepart</a>
+            <a class="nav-link" href="{{ route('jenis-sparepart.index') }}">Jenis Sparepart</a>
+            <a class="nav-link" href="{{ route('merk-sparepart.index') }}">Merk Sparepart</a>
+            <a class="nav-link" href="{{ route('konversi.index') }}">Satuan</a>
+            <a class="nav-link" href="{{ route('kemasan.index') }}">Kemasan</a>
+            <a class="nav-link active ml-0" href="{{ route('sparepart.create') }}">Pengajuan Baru</a>
+        </nav>
+        <hr class="mt-0 mb-4">
+        @if(session('messageberhasil'))
+        <div class="alert alert-success" role="alert"> <i class="fas fa-check"></i>
+            {{ session('messageberhasil') }}
+            <button class="close" type="button" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">×</span>
+            </button>
+        </div>
+        @endif
+        @if(session('messagehapus'))
+        <div class="alert alert-danger" role="alert"> <i class="fas fa-check"></i>
+            {{ session('messagehapus') }}
+            <button class="close" type="button" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">×</span>
+            </button>
+        </div>
+        @endif
         <div class="card">
             <div class="card-header border-bottom">
                 <div class="nav nav-pills nav-justified flex-column flex-xl-row nav-wizard" id="cardTab" role="tablist">
@@ -76,18 +97,18 @@
                                         <div class="form-group col-md-6">
                                             <label class="small mb-1 mr-1" for="id_jenis_sparepart">Pilih Jenis
                                                 Sparepart</label><span class="mr-4 mb-3" style="color: red">*</span>
-                                          
-                                                <select class="form-control" name="id_jenis_sparepart"
-                                                    id="id_jenis_sparepart"
-                                                    class="form-control @error('id_jenis_transaksi') is-invalid @enderror">
-                                                    <option value="" holder>Pilih Jenis</option>
-                                                    @foreach ($jenis_sparepart as $item)
-                                                    <option value="{{ $item->id_jenis_sparepart }}">
-                                                        {{ $item->jenis_sparepart }}
-                                                    </option>
-                                                    @endforeach
-                                                </select>
-                                         
+
+                                            <select class="form-control" name="id_jenis_sparepart"
+                                                id="id_jenis_sparepart"
+                                                class="form-control @error('id_jenis_transaksi') is-invalid @enderror">
+                                                <option value="" holder>Pilih Jenis</option>
+                                                @foreach ($jenis_sparepart as $item)
+                                                <option value="{{ $item->id_jenis_sparepart }}">
+                                                    {{ $item->jenis_sparepart }}
+                                                </option>
+                                                @endforeach
+                                            </select>
+
                                             @error('id_jenis_sparepart')<div class="text-danger small mb-1">
                                                 {{ $message }}
                                             </div> @enderror
@@ -95,11 +116,13 @@
                                         <div class="form-group col-md-6">
                                             <label class="small mb-1 mr-1" for="merk">Merk Sparepart</label><span
                                                 class="mr-4 mb-3" style="color: red">*</span>
-                                                <select class="form-control" name="id_merk" id="id_merk"
-                                                    class="form-control @error('id_merk') is-invalid @enderror">
-                                                    <option value="" holder>Pilih Merk</option>
-                                                </select>
-                                                <span class="small" style="font-size: 13px" style="color: rgb(117, 114, 114)">(Pilih jenis sparepart terlebih dahulu)</span>
+                                            <select class="form-control" name="id_merk" id="id_merk"
+                                                class="form-control @error('id_merk') is-invalid @enderror">
+                                                <option value="" holder>Pilih Merk</option>
+                                            </select>
+                                            <span class="small" style="font-size: 13px"
+                                                style="color: rgb(117, 114, 114)">(Pilih jenis sparepart terlebih
+                                                dahulu)</span>
                                             @error('id_merk')<div class="text-danger small mb-1">{{ $message }}
                                             </div> @enderror
                                         </div>
@@ -108,37 +131,38 @@
                                         <div class="form-group col-md-6">
                                             <label class="small mb-1 mr-1" for="id_konversi">Konversi
                                                 Satuan</label><span class="mr-4 mb-3" style="color: red">*</span>
-                                            
-                                                <select class="form-control" name="id_konversi" id="id_konversi"
-                                                    class="form-control @error('id_konversi') is-invalid @enderror">
-                                                    <option>Pilih Satuan</option>
-                                                    @foreach ($konversi as $item)
-                                                    <option value="{{ $item->id_konversi }}">{{ $item->satuan }}
-                                                    </option>
-                                                    @endforeach
-                                                </select>
-                                           
+
+                                            <select class="form-control" name="id_konversi" id="id_konversi"
+                                                class="form-control @error('id_konversi') is-invalid @enderror">
+                                                <option>Pilih Satuan</option>
+                                                @foreach ($konversi as $item)
+                                                <option value="{{ $item->id_konversi }}">{{ $item->satuan }}
+                                                </option>
+                                                @endforeach
+                                            </select>
+
                                             @error('id_konversi')<div class="text-danger small mb-1">{{ $message }}
                                             </div> @enderror
                                         </div>
                                         <div class="form-group col-md-6">
                                             <label class="small mb-1 mr-1" for="id_kemasan">Kemasan</label><span
                                                 class="mr-4 mb-3" style="color: red">*</span>
-                                                <select class="form-control" name="id_kemasan" id="id_kemasan"
-                                                    class="form-control @error('id_kemasan') is-invalid @enderror">
-                                                    <option>Pilih Kemasan</option>
-                                                    @foreach ($kemasan as $kemas)
-                                                    <option value="{{ $kemas->id_kemasan }}">{{ $kemas->nama_kemasan }}
-                                                    </option>
-                                                    @endforeach
-                                                </select>
+                                            <select class="form-control" name="id_kemasan" id="id_kemasan"
+                                                class="form-control @error('id_kemasan') is-invalid @enderror">
+                                                <option>Pilih Kemasan</option>
+                                                @foreach ($kemasan as $kemas)
+                                                <option value="{{ $kemas->id_kemasan }}">{{ $kemas->nama_kemasan }}
+                                                </option>
+                                                @endforeach
+                                            </select>
                                             @error('id_kemasan')<div class="text-danger small mb-1">{{ $message }}
                                             </div> @enderror
                                         </div>
                                     </div>
                                     <div class="form-row">
-                                        <div class="form-group col-md-6">
-                                            <label class="small mb-1 mr-1" for="lifetime">Lifetime</label><span class="mr-4 mb-3" style="color: red">*</span>
+                                        <div class="form-group col-md-4">
+                                            <label class="small mb-1 mr-1" for="lifetime">Lifetime</label><span
+                                                class="mr-4 mb-3" style="color: red">*</span>
                                             <select name="lifetime" id="lifetime" class="form-control"
                                                 class="form-control @error('lifetime') is-invalid @enderror">
                                                 <option value="{{ old('lifetime')}}"> Pilih Lifetime</option>
@@ -148,8 +172,9 @@
                                             @error('lifetime')<div class="text-danger small mb-1">{{ $message }}
                                             </div> @enderror
                                         </div>
-                                        <div class="form-group col-md-6">
-                                            <label class="small mb-1 mr-1" for="jenis_barang">Jenis Barang</label><span class="mr-4 mb-3" style="color: red">*</span>
+                                        <div class="form-group col-md-4">
+                                            <label class="small mb-1 mr-1" for="jenis_barang">Jenis Barang</label><span
+                                                class="mr-4 mb-3" style="color: red">*</span>
                                             <select name="jenis_barang" id="jenis_barang" class="form-control"
                                                 class="form-control @error('jenis_barang') is-invalid @enderror">
                                                 <option value="{{ old('jenis_barang')}}"> Pilih Jenis Barang</option>
@@ -157,6 +182,16 @@
                                                 <option value="Import">Import</option>
                                             </select>
                                             @error('jenis_barang')<div class="text-danger small mb-1">{{ $message }}
+                                            </div> @enderror
+                                        </div>
+                                        <div class="form-group col-md-4">
+                                            <label class="small mb-1 mr-1" for="dimensi_berat">Dimensi
+                                                Berat</label><span class="mr-4 mb-3" style="color: red">*</span>
+                                            <input class="form-control" id="dimensi_berat" type="number"
+                                                name="dimensi_berat" placeholder="Input Dimensi Berat"
+                                                value="{{ old('dimensi_berat') }}"
+                                                class="form-control @error('dimensi_berat') is-invalid @enderror" />
+                                            @error('dimensi_berat')<div class="text-danger small mb-1">{{ $message }}
                                             </div> @enderror
                                         </div>
                                     </div>
@@ -167,23 +202,24 @@
                                             class="form-control @error('id_supplier') is-invalid @enderror">
                                             <option> Pilih Supplier</option>
                                             @foreach ($supplier as $item)
-                                            <option value="{{ $item->id_supplier }}">{{ $item->nama_supplier }}</option>
-                                            @endforeach
-                                        </select>
-                                        @error('id_supplier')<div class="text-danger small mb-1">{{ $message }}
-                                        </div> @enderror
-                                    </div> --}}
-                                    <hr class="my-4" />
-                                    <div class="d-flex justify-content-between">
-                                        <a href="{{ route('sparepart.index') }}" class="btn btn-light">Kembali</a>
-                                        <button class="btn btn-primary" type="Submit">Ajukan!</button>
-                                    </div>
-                                </form>
+                                            <option value="{{ $item->id_supplier }}">{{ $item->nama_supplier }}
+                                    </option>
+                                    @endforeach
+                                    </select>
+                                    @error('id_supplier')<div class="text-danger small mb-1">{{ $message }}
+                                    </div> @enderror
+                            </div> --}}
+                            <hr class="my-4" />
+                            <div class="d-flex justify-content-between">
+                                <a href="{{ route('sparepart.index') }}" class="btn btn-light">Kembali</a>
+                                <button class="btn btn-primary" type="Submit">Ajukan!</button>
                             </div>
+                            </form>
                         </div>
                     </div>
+                </div>
 
-                    {{-- <div class="tab-pane py-5 py-xl-5 fade" id="wizard2" role="tabpanel" aria-labelledby="wizard2-tab">
+                {{-- <div class="tab-pane py-5 py-xl-5 fade" id="wizard2" role="tabpanel" aria-labelledby="wizard2-tab">
                         <div class="row justify-content-center">
                             <div class="col-xxl-6 col-xl-8">
                                 <h3 class="text-primary">Step 2</h3>
@@ -194,41 +230,40 @@
                                         class="text-muted">*gram</small>
                                         <input class="form-control" name="berat_sparepart" id="berat_sparepart"
                                             placeholder="Input Berat Sparepart" value="{{ old('berat_sparepart') }}"
-                                            class="form-control @error('berat_sparepart') is-invalid @enderror"></input>
-                                        @error('berat_sparepart')<div class="text-danger small mb-1">{{ $message }}
-                                        </div> @enderror
-                                    </div>
+                class="form-control @error('berat_sparepart') is-invalid @enderror"></input>
+                @error('berat_sparepart')<div class="text-danger small mb-1">{{ $message }}
+                </div> @enderror
+            </div>
 
-                                    <div class="form-group col-md-6">
-                                        <label class="small mb-1" for="photo">Foto Sparepart</label>
-                                        <input class="form-control" id="photo" type="file" name="photo[]"
-                                            value="{{ old('photo') }}" accept="image/*" multiple="multiple"
-                                            class="form-control @error('photo') is-invalid @enderror">
-                                        @error('photo')<div class="text-danger small mb-1">{{ $message }}
-                                        </div> @enderror
-                                    </div>
-                                </div>
-
-                                <div class="form-group">
-                                    <label class="small mb-1" for="keterangan">Keterangan Marketplace</label>
-                                    <textarea class="form-control" name="keterangan" id="keterangan" cols="20" rows="10"
-                                        placeholder="Input Keterangan" value="{{ old('keterangan') }}"
-                                        class="form-control @error('keterangan') is-invalid @enderror"></textarea>
-                                    @error('keterangan')<div class="text-danger small mb-1">{{ $message }}
-                                    </div> @enderror
-                                </div>
-                                <hr class="my-4" />
-                                <div class="d-flex justify-content-between">
-                                    <a href="{{ route('sparepart.index') }}" class="btn btn-light">Kembali</a>
-                                    <button class="btn btn-primary" type="Submit">Submit</button>
-                                </div>
-                               
-                            </div>
-                        </div>
-                    </div> --}}
-                </div>
+            <div class="form-group col-md-6">
+                <label class="small mb-1" for="photo">Foto Sparepart</label>
+                <input class="form-control" id="photo" type="file" name="photo[]" value="{{ old('photo') }}"
+                    accept="image/*" multiple="multiple" class="form-control @error('photo') is-invalid @enderror">
+                @error('photo')<div class="text-danger small mb-1">{{ $message }}
+                </div> @enderror
             </div>
         </div>
+
+        <div class="form-group">
+            <label class="small mb-1" for="keterangan">Keterangan Marketplace</label>
+            <textarea class="form-control" name="keterangan" id="keterangan" cols="20" rows="10"
+                placeholder="Input Keterangan" value="{{ old('keterangan') }}"
+                class="form-control @error('keterangan') is-invalid @enderror"></textarea>
+            @error('keterangan')<div class="text-danger small mb-1">{{ $message }}
+            </div> @enderror
+        </div>
+        <hr class="my-4" />
+        <div class="d-flex justify-content-between">
+            <a href="{{ route('sparepart.index') }}" class="btn btn-light">Kembali</a>
+            <button class="btn btn-primary" type="Submit">Submit</button>
+        </div>
+
+    </div>
+    </div>
+    </div> --}}
+    </div>
+    </div>
+    </div>
 </main>
 
 
@@ -415,30 +450,30 @@
         $('#validasierror').click();
 
         $('select[name="id_jenis_sparepart"]').on('change', function () {
-                var id_jenis_sparepart = $(this).val();
-                if (id_jenis_sparepart) {
-                    $.ajax({
-                        url: 'getmerk/' + id_jenis_sparepart,
-                        type: "GET",
-                        dataType: "json",
-                        success: function (data) {
-                            $('select[name="id_merk"]').empty();
+            var id_jenis_sparepart = $(this).val();
+            if (id_jenis_sparepart) {
+                $.ajax({
+                    url: 'getmerk/' + id_jenis_sparepart,
+                    type: "GET",
+                    dataType: "json",
+                    success: function (data) {
+                        $('select[name="id_merk"]').empty();
+                        $('select[name="id_merk"]').append(
+                            '<option value="" holder>Pilih Merk</option>')
+                        $.each(data, function (key, value) {
                             $('select[name="id_merk"]').append(
-                                '<option value="" holder>Pilih Merk</option>')
-                            $.each(data, function (key, value) {
-                                $('select[name="id_merk"]').append(
-                                    '<option value="' +
-                                    key + '">' + value + '</option>');
-                            });
-                        },
-                        error: function (response) {
-                            console.log(response)
-                        }
-                    });
-                } else {
-                    $('select[name="id_merk"]').empty();
-                }
-            });
+                                '<option value="' +
+                                key + '">' + value + '</option>');
+                        });
+                    },
+                    error: function (response) {
+                        console.log(response)
+                    }
+                });
+            } else {
+                $('select[name="id_merk"]').empty();
+            }
+        });
     });
 
 </script>

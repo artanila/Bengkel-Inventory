@@ -25,7 +25,8 @@ class Sparepart extends Model
         'nama_sparepart',
         'status_sparepart',
         'lifetime',
-        'jenis_barang'
+        'jenis_barang',
+        'dimensi_berat'
     ];
 
     protected $hidden = [

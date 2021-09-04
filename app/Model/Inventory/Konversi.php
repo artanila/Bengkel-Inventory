@@ -16,13 +16,14 @@ class Konversi extends Model
 
     protected $fillable = [
         'satuan',
-        'id_bengkel'
+        'status_konversi'
     ];
 
     protected $hidden =[ 
         'created_at',
         'updated_at',
-        'deleted_at'
+        'deleted_at',
+       
     ];
 
     public $timestamps = false;
