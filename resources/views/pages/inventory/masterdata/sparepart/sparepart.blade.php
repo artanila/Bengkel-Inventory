@@ -26,7 +26,6 @@
             <a class="nav-link" href="{{ route('merk-sparepart.index') }}">Merk Sparepart</a>
             <a class="nav-link" href="{{ route('konversi.index') }}">Satuan</a>
             <a class="nav-link" href="{{ route('kemasan.index') }}">Kemasan</a>
-            <a class="nav-link" href="{{ route('sparepart.create') }}">Pengajuan Baru</a>
         </nav>
         <hr class="mt-0 mb-4">
        
@@ -38,6 +37,15 @@
                             <p class="text-gray-700">Anda ingin menambahkan suku cadang yang tidak terdaftar? Anda dapat melakukan 
                                 pengajuan nama suku cadang dengan klik <b>tombol pengajuan baru</b>.
                             </p>
+                            <a class="btn btn-primary btn-sm px-3 py-2" href="{{ route('sparepart.create') }}">
+                                Ajukan Nama Sparepart Baru
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round" class="feather feather-arrow-right ml-1">
+                                    <line x1="5" y1="12" x2="19" y2="12"></line>
+                                    <polyline points="12 5 19 12 12 19"></polyline>
+                                </svg>
+                            </a>
                         </div>
                         <div class="col d-none d-lg-block mt-xxl-n5 ml-15">
                             <img class="img-fluid px-xl-4 mt-xxl-n6"

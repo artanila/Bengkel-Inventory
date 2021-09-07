@@ -26,7 +26,6 @@
             <a class="nav-link" href="{{ route('merk-sparepart.index') }}">Merk Sparepart</a>
             <a class="nav-link" href="{{ route('konversi.index') }}">Satuan</a>
             <a class="nav-link" href="{{ route('kemasan.index') }}">Kemasan</a>
-            <a class="nav-link" href="{{ route('sparepart.create') }}">Pengajuan Baru</a>
         </nav>
         <hr class="mt-0 mb-4">
         <div class="row">

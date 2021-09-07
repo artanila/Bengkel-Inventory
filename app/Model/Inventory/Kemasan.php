@@ -16,7 +16,7 @@ class Kemasan extends Model
 
     protected $fillable = [
         'nama_kemasan',
-        'id_bengkel'
+        'status_kemasan'
     ];
 
     protected $hidden =[ 

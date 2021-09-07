@@ -10,42 +10,17 @@
                     <div class="col-auto mb-3">
                         <h1 class="page-header-title">
                             <div class="page-header-icon"><i class="fas fa-warehouse"></i></div>
-                            Master Data
+                            Pengajuan Tambah Data Sparepart Baru
                         </h1>
                     </div>
                 </div>
             </div>
         </div>
     </header>
-   
-    <!-- Main page content-->
-    <div class="container mt-4">
-        <!-- Account page navigation-->
-        <nav class="nav nav-borders">
-            <a class="nav-link" href="{{ route('sparepart.index') }}">Sparepart</a>
-            <a class="nav-link" href="{{ route('jenis-sparepart.index') }}">Jenis Sparepart</a>
-            <a class="nav-link" href="{{ route('merk-sparepart.index') }}">Merk Sparepart</a>
-            <a class="nav-link" href="{{ route('konversi.index') }}">Satuan</a>
-            <a class="nav-link" href="{{ route('kemasan.index') }}">Kemasan</a>
-            <a class="nav-link active ml-0" href="{{ route('sparepart.create') }}">Pengajuan Baru</a>
-        </nav>
-        <hr class="mt-0 mb-4">
-        @if(session('messageberhasil'))
-        <div class="alert alert-success" role="alert"> <i class="fas fa-check"></i>
-            {{ session('messageberhasil') }}
-            <button class="close" type="button" data-dismiss="alert" aria-label="Close">
-                <span aria-hidden="true">×</span>
-            </button>
-        </div>
-        @endif
-        @if(session('messagehapus'))
-        <div class="alert alert-danger" role="alert"> <i class="fas fa-check"></i>
-            {{ session('messagehapus') }}
-            <button class="close" type="button" data-dismiss="alert" aria-label="Close">
-                <span aria-hidden="true">×</span>
-            </button>
-        </div>
-        @endif
+
+    <div class="container-fluid">
+
+
         <div class="card">
             <div class="card-header border-bottom">
                 <div class="nav nav-pills nav-justified flex-column flex-xl-row nav-wizard" id="cardTab" role="tablist">
@@ -218,50 +193,8 @@
                         </div>
                     </div>
                 </div>
-
-                {{-- <div class="tab-pane py-5 py-xl-5 fade" id="wizard2" role="tabpanel" aria-labelledby="wizard2-tab">
-                        <div class="row justify-content-center">
-                            <div class="col-xxl-6 col-xl-8">
-                                <h3 class="text-primary">Step 2</h3>
-                                <h5 class="card-title">Marketplace Info</h5>
-                                <div class="row">
-                                    <div class="form-group col-md-6">
-                                        <label class="small mb-1" for="berat_sparepart">Berat Sparepart</label><small
-                                        class="text-muted">*gram</small>
-                                        <input class="form-control" name="berat_sparepart" id="berat_sparepart"
-                                            placeholder="Input Berat Sparepart" value="{{ old('berat_sparepart') }}"
-                class="form-control @error('berat_sparepart') is-invalid @enderror"></input>
-                @error('berat_sparepart')<div class="text-danger small mb-1">{{ $message }}
-                </div> @enderror
-            </div>
-
-            <div class="form-group col-md-6">
-                <label class="small mb-1" for="photo">Foto Sparepart</label>
-                <input class="form-control" id="photo" type="file" name="photo[]" value="{{ old('photo') }}"
-                    accept="image/*" multiple="multiple" class="form-control @error('photo') is-invalid @enderror">
-                @error('photo')<div class="text-danger small mb-1">{{ $message }}
-                </div> @enderror
             </div>
         </div>
-
-        <div class="form-group">
-            <label class="small mb-1" for="keterangan">Keterangan Marketplace</label>
-            <textarea class="form-control" name="keterangan" id="keterangan" cols="20" rows="10"
-                placeholder="Input Keterangan" value="{{ old('keterangan') }}"
-                class="form-control @error('keterangan') is-invalid @enderror"></textarea>
-            @error('keterangan')<div class="text-danger small mb-1">{{ $message }}
-            </div> @enderror
-        </div>
-        <hr class="my-4" />
-        <div class="d-flex justify-content-between">
-            <a href="{{ route('sparepart.index') }}" class="btn btn-light">Kembali</a>
-            <button class="btn btn-primary" type="Submit">Submit</button>
-        </div>
-
-    </div>
-    </div>
-    </div> --}}
-    </div>
     </div>
     </div>
 </main>

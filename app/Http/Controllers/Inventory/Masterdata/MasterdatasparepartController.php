@@ -99,7 +99,7 @@ class MasterdatasparepartController extends Controller
         $sparepart->slug = Str::slug($request->nama_sparepart);
         $sparepart->lifetime = $request->lifetime;
         $sparepart->jenis_barang = $request->jenis_barang;
-        $sparepart->status_sparepart = 'Tidak Aktif';
+        $sparepart->status_sparepart = 'Diajukan';
         $sparepart->save();
 
         return redirect()->route('sparepart.create')->with('messageberhasil', 'Data Sparepart Berhasil diajukan - Mohon ditunggu untuk Approval Data');

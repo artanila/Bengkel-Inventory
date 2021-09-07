@@ -68,7 +68,7 @@ class MasterdatamerksparepartController extends Controller
         $merksparepart->id_jenis_sparepart = $request->id_jenis_sparepart;
         $merksparepart->kode_merk = $kode_merk;
         $merksparepart->merk_sparepart = $request->merk_sparepart;
-        $merksparepart->status_merk = 'Tidak Aktif';
+        $merksparepart->status_merk = 'Diajukan';
 
         $merksparepart->save();
         return redirect()->back()->with('messageberhasil','Data Merk Sparepart Berhasil diajukan - Mohon ditunggu untuk Approval');
