@@ -43,7 +43,7 @@ class MasterdatakemasanController extends Controller
     {
         $kemasan = new Kemasan;
         $kemasan->nama_kemasan = $request->nama_kemasan;
-        $kemasan->status_kemasan = 'Tidak Aktif';
+        $kemasan->status_kemasan = 'Diajukan';
 
         $kemasan->save();
         return redirect()->back()->with('messageberhasil','Data Kemasan Berhasil diajukan - Mohon ditunggu untuk Approval Data');

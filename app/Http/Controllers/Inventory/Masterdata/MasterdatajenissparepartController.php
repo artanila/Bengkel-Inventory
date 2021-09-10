@@ -51,7 +51,7 @@ class MasterdatajenissparepartController extends Controller
         $jenissparepart = new Jenissparepart;
         $jenissparepart->jenis_sparepart = $request->jenis_sparepart;
         $jenissparepart->slug = Str::slug($request->jenis_sparepart);
-        $jenissparepart->status_jenis = 'Tidak Aktif';
+        $jenissparepart->status_jenis = 'Diajukan';
      
 
         $jenissparepart->save();

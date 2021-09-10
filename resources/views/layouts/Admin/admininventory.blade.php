@@ -159,6 +159,9 @@
 
                         <div class="collapse" id="collapseUtilities" data-parent="#accordionSidenav" style="">
                             <nav class="sidenav-menu-nested nav">
+                                <a class="nav-link" href="{{ route('Detailsparepart.index') }}">
+                                    Kelola Stock
+                                </a>
                                 <a class="nav-link" href="{{ route('Opname.index') }}">
                                     Stock Opname
                                 </a>

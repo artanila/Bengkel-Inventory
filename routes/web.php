@@ -179,8 +179,6 @@ Route::group(
             ->group(function () {
                 Route::get('/', 'MasterdatasparepartController@index')
                     ->name('masterdatasparepart');
-                Route::get('sparepart/{id_sparepart}/gallery', 'MasterdatasparepartController@gallery')
-                    ->name('sparepart.gallery');
                 Route::resource('sparepart', 'MasterdatasparepartController');
                 Route::get('sparepart/getmerk/{id}', 'MasterdatasparepartController@getmerk');
             });
@@ -252,8 +250,19 @@ Route::group(
             ->group(function () {
                 Route::resource('gudang', 'MasterdatagudangController');
             });
+        
 
-
+        // DETAIL SPAREPART
+        Route::prefix('inventory')
+            ->namespace('Inventory\DetailSparepart')
+            ->middleware(['admin_gudang', 'verified'])
+            ->group(function () {
+                Route::resource('Detailsparepart', 'DetailSparepartController');
+                Route::get('Detailsparepart/{id_detail_sparepart}/gallery', 'DetailSparepartController@gallery')
+                    ->name('Detailsparepart-gallery');
+            });
+        
+        
 
         // PURCHASE ORDER ---------------------------------------------------------------- Purchase Order
         Route::prefix('inventory')
@@ -321,6 +330,8 @@ Route::group(
             ->group(function () {
 
                 Route::resource('Opname', 'OpnameController');
+                Route::post('Opname/storeawal', 'OpnameController@Storeawal')
+                    ->name('opname-store2');
             });
 
         Route::prefix('inventory/approvalopname')

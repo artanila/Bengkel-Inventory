@@ -42,7 +42,7 @@ class Sparepart extends Model
         return $this->belongsTo(Jenissparepart::class, 'id_jenis_sparepart', 'id_jenis_sparepart')->withTrashed();
     }
 
-    public $with = ['Merksparepart', 'Jenissparepart', 'Kemasan', 'Kartugudangterakhir'];
+    public $with = ['Merksparepart', 'Jenissparepart', 'Kemasan','Konversi'];
     public function Merksparepart()
     {
         return $this->belongsTo(Merksparepart::class, 'id_merk', 'id_merk')->withTrashed();
@@ -93,10 +93,10 @@ class Sparepart extends Model
     //     return $this->hasOne(Kartugudang::class, 'id_sparepart', 'id_sparepart')->orderBy('updated_at', 'DESC');;
     // }
 
-    public function Kartugudangterakhir()
-    {
-        return $this->hasOne(Kartugudang::class, 'id_sparepart', 'id_sparepart')->where('jenis_kartu', 'Receiving')->orderBy('updated_at', 'DESC');
-    }
+    // public function Kartugudangterakhir()
+    // {
+    //     return $this->hasOne(Kartugudang::class, 'id_sparepart', 'id_sparepart')->where('jenis_kartu', 'Receiving')->orderBy('updated_at', 'DESC');
+    // }
 
     // public function Kartugudangservice()
     // {

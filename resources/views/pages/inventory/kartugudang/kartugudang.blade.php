@@ -31,7 +31,7 @@
                     <div class="col-xl-8 col-xxl-12">
                         <div class="text-center px-4 mb-4 mb-xl-0 mb-xxl-4">
                             <h1 class="text-primary" style="font-size: 15pt">Kartu Gudang, Reporting Sparepart</h1>
-                            <p class="text-gray-700 mb-0">Klik Spareprat Report untuk melihat data transaksi sparepart.</p>
+                            <p class="text-gray-700 mb-0">Klik Sparepart Report untuk melihat data transaksi sparepart.</p>
                         </div>
                     </div>
                     <div class="col-xl-4 col-xxl-12 text-center"><img class="img-fluid"
@@ -92,15 +92,6 @@
                                             colspan="1" aria-label="Salary: activate to sort column ascending"
                                             style="width: 40px;">Satuan</th>
                                         <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
-                                            colspan="1" aria-label="Salary: activate to sort column ascending"
-                                            style="width: 20px;">Stock</th>
-                                        <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
-                                            colspan="1" aria-label="Salary: activate to sort column ascending"
-                                            style="width: 20px;">Min Stock</th>
-                                        <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
-                                            colspan="1" aria-label="Salary: activate to sort column ascending"
-                                            style="width: 20px;">Status</th>
-                                        <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
                                             colspan="1" aria-label="Actions: activate to sort column ascending"
                                             style="width: 60px;">Actions</th>
                                     </tr>
@@ -109,33 +100,18 @@
                                     @forelse ($sparepart as $item)
                                     <tr role="row" class="odd">
                                         <th scope="row" class="small" class="sorting_1">{{ $loop->iteration}}</th>
-                                        <td>{{ $item->kode_sparepart }}</td>
-                                        <td>{{ $item->nama_sparepart }}</td>
-                                        <td>{{ $item->Jenissparepart->jenis_sparepart }}</td>
-                                        <td>{{ $item->Merksparepart->merk_sparepart }}</td>
-                                        <td>{{ $item->Konversi->satuan }}</td>
-                                        <td class=text-center>{{ $item->stock }}</td>
-                                        <td class="text-center">{{ $item->stock_min}}</td>
-                                        <td class="text-center">
-                                            @if($item->status_jumlah == 'Cukup')
-                                            <span class="badge badge-success">
-                                                @elseif($item->status_jumlah == 'Habis')
-                                                <span class="badge badge-danger">
-                                                @elseif($item->status_jumlah == 'Kurang')
-                                                <span class="badge badge-warning">
-                                                    @else
-                                                    <span>
-                                                        @endif
-                                                        {{ $item->status_jumlah }}
-                                                    </span>
-                                        </td>
+                                        <td>{{ $item->Sparepart->kode_sparepart }}</td>
+                                        <td>{{ $item->Sparepart->nama_sparepart }}</td>
+                                        <td>{{ $item->Sparepart->Jenissparepart->jenis_sparepart }}</td>
+                                        <td>{{ $item->Sparepart->Merksparepart->merk_sparepart }}</td>
+                                        <td>{{ $item->Sparepart->Konversi->satuan }}</td>
                                         <td>
-                                            <a href="{{ route('Kartu-gudang.show', $item->id_sparepart) }}"
+                                            <a href="{{ route('Kartu-gudang.show', $item->id_detail_sparepart) }}"
                                                 class="btn btn-secondary btn-datatable" data-toggle="tooltip" 
                                                 data-placement="top" title="" data-original-title="Sparepart Report">
                                                 <i class="fa fa-eye"></i>
                                             </a>
-                                            <a href="{{ route('cetak-kartu-gudang', $item->id_sparepart) }}" 
+                                            <a href="{{ route('cetak-kartu-gudang', $item->id_detail_sparepart) }}" 
                                                 class="btn btn-primary btn-datatable" data-toggle="tooltip" target="_blank"
                                                 data-placement="top" title="" data-original-title="Cetak Sparepart Report">
                                                 <i class="fas fa-print"></i></i>
@@ -156,31 +132,6 @@
 </div>
 </main>
 
-@forelse ($sparepart as $item)
-<div class="modal fade" id="Modalhapus-{{ $item->id_sparepart }}" tabindex="-1" role="dialog"
-    aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalCenterTitle">Konfirmasi Hapus Data</h5>
-                <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span
-                        aria-hidden="true">×</span></button>
-            </div>
-            <form action="{{ route('sparepart.destroy', $item->id_sparepart) }}" method="POST" class="d-inline">
-                @csrf
-                @method('delete')
-                <div class="modal-body">Apakah Anda Yakin Menghapus Data Sparepart {{ $item->nama_sparepart }}?</div>
-                <div class="modal-footer">
-                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Close</button>
-                    <button class="btn btn-danger" type="submit">Ya! Hapus</button>
-                </div>
-            </form>
-        </div>
-    </div>
-</div>
-@empty
-
-@endforelse
 @if (count($errors) > 0)
 <button id="validasierror" style="display: none" type="button" data-toggle="modal" data-target="#Modaltambah">Open
     Modal</button>
