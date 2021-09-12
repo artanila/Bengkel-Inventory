@@ -15,7 +15,7 @@
             </div>
             <div>
                 <div class="col-12 col-xl-auto mb-3">
-                    <a href="{{ route('Detailsparepart.index') }}" class="btn btn-sm btn-light text-primary mr-2">Kembali</a>
+                    <a href="{{ route('Kartu-gudang.index') }}" class="btn btn-sm btn-light text-primary mr-2">Kembali</a>
                 </div>
             </div>
         </div>
@@ -162,13 +162,10 @@
                                         <thead>
                                             <tr role="row">
                                                 <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
-                                                    colspan="1" aria-sort="ascending"
-                                                    aria-label="Name: activate to sort column descending"
-                                                    style="width: 20px;">
-                                                    No</th>
+                                                    colspan="1" aria-sort="ascending" aria-label="Name: activate to sort column descending"
+                                                    style="width: 20px;">No</th>
                                                 <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
-                                                    colspan="1"
-                                                    aria-label="Start date: activate to sort column ascending"
+                                                    colspan="1" aria-label="Start date: activate to sort column ascending"
                                                     style="width: 230px;">Foto</th>
                                                 <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
                                                     colspan="1" aria-label="Actions: activate to sort column ascending"

@@ -47,6 +47,11 @@ class Gudang extends Model
         return $this->hasMany(DetailSparepart::class, 'id_gudang','id_gudang');
     }
 
+    public function Rak()
+    {
+        return $this->belongsTo(Rak::class, 'id_rak','id_rak');
+    }
+
     protected static function booted()
     {
         static::addGlobalScope(new OwnershipScope);

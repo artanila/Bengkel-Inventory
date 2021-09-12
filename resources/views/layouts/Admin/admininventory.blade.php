@@ -155,18 +155,13 @@
                                 <i class="fas fa-angle-down"></i>
                             </div>
                         </a>
-
-
                         <div class="collapse" id="collapseUtilities" data-parent="#accordionSidenav" style="">
                             <nav class="sidenav-menu-nested nav">
-                                <a class="nav-link" href="{{ route('Detailsparepart.index') }}">
-                                    Kelola Stock
+                                <a class="nav-link" href="{{ route('Kartu-gudang.index') }}">
+                                    Stock & Kartu Gudang
                                 </a>
                                 <a class="nav-link" href="{{ route('Opname.index') }}">
                                     Stock Opname
-                                </a>
-                                <a class="nav-link" href="{{ route('Kartu-gudang.index') }}">
-                                    Kartu Gudang
                                 </a>
                             </nav>
                         </div>
@@ -206,7 +201,7 @@
                                     Receiving
                                 </a>
                                 <a class="nav-link" href="{{ route('retur.index') }}">
-                                    Retur Pembelian
+                                    Retur
                                 </a>
                             </nav>
                         </div>
@@ -249,7 +244,7 @@
                 <div class="sidenav-footer">
                     <div class="sidenav-footer-content">
                         <div class="sidenav-footer-subtitle">Jabatan :</div>
-                        <div class="sidenav-footer-title">{{ Auth::user()->pegawai->jabatan->nama_jabatan }}</div>
+                        {{-- <div class="sidenav-footer-title">{{ Auth::user()->pegawai->jabatan->nama_jabatan }}</div> --}}
                     </div>
                 </div>
             </nav>

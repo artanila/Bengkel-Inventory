@@ -18,7 +18,7 @@ class MasterdatakemasanController extends Controller
      */
     public function index()
     {
-        $kemasan = Kemasan::where('status_kemasan','=','Aktif')->get();
+        $kemasan = Kemasan::get();
 
         return view('pages.inventory.masterdata.kemasan', compact('kemasan'));
     }
@@ -43,7 +43,6 @@ class MasterdatakemasanController extends Controller
     {
         $kemasan = new Kemasan;
         $kemasan->nama_kemasan = $request->nama_kemasan;
-        $kemasan->status_kemasan = 'Diajukan';
 
         $kemasan->save();
         return redirect()->back()->with('messageberhasil','Data Kemasan Berhasil diajukan - Mohon ditunggu untuk Approval Data');

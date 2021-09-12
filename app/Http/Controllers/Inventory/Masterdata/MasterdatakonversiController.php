@@ -18,7 +18,7 @@ class MasterdatakonversiController extends Controller
      */
     public function index()
     {
-        $konversi = Konversi::where('status_konversi','=','Aktif')->get();
+        $konversi = Konversi::get();
 
         return view('pages.inventory.masterdata.konversi', compact('konversi'));
     }
@@ -43,7 +43,6 @@ class MasterdatakonversiController extends Controller
     {
         $konversi = new Konversi;
         $konversi->satuan = $request->satuan;
-        $konversi->status_konversi = 'Diajukan';
         
         $konversi->save();
         return redirect()->back()->with('messageberhasil','Data Konversi Satuan Berhasil diajukan - Mohon ditunggu untuk Approval Data');

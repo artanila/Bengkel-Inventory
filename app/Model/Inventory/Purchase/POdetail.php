@@ -2,15 +2,16 @@
 
 namespace App\Model\Inventory\Purchase;
 
+use App\Model\Inventory\DetailSparepart\DetailSparepart;
 use App\Model\Inventory\Hargasparepart;
 use App\Model\Inventory\Sparepart;
 use App\Scopes\OwnershipScope;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\SoftDeletes;
+
 
 class POdetail extends Model
 {
-    use SoftDeletes;
+  
 
     protected $table = "tb_inventory_detpo";
 
@@ -18,8 +19,7 @@ class POdetail extends Model
 
     protected $fillable = [
         'id_po',
-        'id_bengkel',
-        'id_sparepart',
+        'id_detail_sparepart',
         'qty',
         'qty_po_sementara'
     ];
@@ -27,7 +27,6 @@ class POdetail extends Model
     protected $hidden =[ 
         'created_at',
         'updated_at',
-        'deleted_at'
     ];
 
     public $timestamps = true;
@@ -39,7 +38,7 @@ class POdetail extends Model
 
     public function Sparepart()
     {
-        return $this->belongsTo(Sparepart::class, 'id_sparepart','id_sparepart');
+        return $this->belongsTo(DetailSparepart::class, 'id_detail_sparepart','id_detail_sparepart');
     }
 
     protected static function booted()

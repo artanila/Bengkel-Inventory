@@ -56,8 +56,8 @@ class MasterdatasparepartController extends Controller
     {
         $jenis_sparepart = Jenissparepart::where('status_jenis','=','Aktif')->get();
         $merk_sparepart = Merksparepart::where('status_merk','=','Aktif')->get();
-        $konversi = Konversi::where('status_konversi','=','Aktif')->get();
-        $kemasan = Kemasan::where('status_kemasan','=','Aktif')->get();
+        $konversi = Konversi::get();
+        $kemasan = Kemasan::get();
 
         $id = Sparepart::getId();
         foreach ($id as $value);

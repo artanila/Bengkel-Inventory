@@ -2,12 +2,14 @@
 
 namespace App\Model\Inventory;
 
+use App\Model\Inventory\DetailSparepart\DetailSparepart;
 use App\Model\Inventory\Kartugudang\Kartugudang;
 use App\Model\Inventory\Purchase\PO;
 use App\Model\Inventory\Purchase\POdetail;
 use App\Model\Inventory\Stockopname\Opname;
 use App\Scopes\OwnershipScope;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class Sparepart extends Model
@@ -61,6 +63,11 @@ class Sparepart extends Model
     public function Kemasan()
     {
         return $this->belongsTo(Kemasan::class, 'id_kemasan', 'id_kemasan')->withTrashed();
+    }
+
+    public function DetailSparepart()
+    {
+        return $this->hasMany(DetailSparepart::class, 'id_detail_sparepart', 'id_detail_sparepart');
     }
 
     // public function Rak()

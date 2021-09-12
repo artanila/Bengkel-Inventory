@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Inventory\Retur;
 
 use App\Http\Controllers\Controller;
+use App\Model\Inventory\DetailSparepart\DetailSparepart;
 use App\Model\Inventory\Rcv\Rcv;
 use App\Model\Inventory\Rcv\Rcvdetail;
 use App\Model\Inventory\Retur\Retur;
@@ -74,7 +75,7 @@ class ReturController extends Controller
      */
     public function show($id_retur)
     {
-        $retur = Retur::with('Rcv.Detailrcv','Pegawai','Supplier.Sparepart.Merksparepart.Jenissparepart','Detailretur')->findOrFail($id_retur);
+        $retur = Retur::with('Rcv.Detailrcv','Pegawai','Supplier','Detailretur')->findOrFail($id_retur);
 
         
 
@@ -92,8 +93,12 @@ class ReturController extends Controller
     public function edit($id)
     {
         $retur = Retur::with([
-            'Pegawai','Supplier.Sparepart.Merksparepart.Jenissparepart','Detailretur'
+            'Pegawai','Supplier'
         ])->find($id);
+
+        $detailsparepart = DetailSparepart::with('sparepart')->get();
+        $sparepart = Sparepart::get();
+        // return $sparepart;
 
         // return $retur;
         
@@ -114,7 +119,7 @@ class ReturController extends Controller
             }
         }
 
-        return view('pages.inventory.retur.create', compact('retur','kode_retur'));
+        return view('pages.inventory.retur.create', compact('retur','kode_retur','detailsparepart','sparepart'));
     }
 
     /**
