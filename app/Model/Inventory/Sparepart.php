@@ -44,7 +44,7 @@ class Sparepart extends Model
         return $this->belongsTo(Jenissparepart::class, 'id_jenis_sparepart', 'id_jenis_sparepart')->withTrashed();
     }
 
-    public $with = ['Merksparepart', 'Jenissparepart', 'Kemasan','Konversi'];
+    public $with = ['Merksparepart', 'Jenissparepart', 'Kemasan','Konversi','Detailsparepart'];
     public function Merksparepart()
     {
         return $this->belongsTo(Merksparepart::class, 'id_merk', 'id_merk')->withTrashed();
@@ -65,9 +65,9 @@ class Sparepart extends Model
         return $this->belongsTo(Kemasan::class, 'id_kemasan', 'id_kemasan')->withTrashed();
     }
 
-    public function DetailSparepart()
+    public function Detailsparepart()
     {
-        return $this->hasMany(DetailSparepart::class, 'id_detail_sparepart', 'id_detail_sparepart');
+        return $this->belongsTo(DetailSparepart::class, 'id_sparepart', 'id_sparepart');
     }
 
     // public function Rak()

@@ -19,7 +19,6 @@ class Rcvdetail extends Model
 
     protected $fillable = [
         'id_rcv',
-        'id_bengkel',
         'id_detail_sparepart',
         'id_rak',
         'id_gudang',
@@ -58,8 +57,4 @@ class Rcvdetail extends Model
         return $this->belongsTo(Gudang::class, 'id_gudang','id_gudang');
     }
 
-    protected static function booted()
-    {
-        static::addGlobalScope(new OwnershipScope);
-    }
 }

@@ -16,7 +16,7 @@
                         <div class="small">
                             <span class="font-weight-500">Receiving</span>
                             · Tambah · Data
-                            <span class="font-weight-500 text-primary" id="id_bengkel" style="display:none">{{ Auth::user()->bengkel->id_bengkel}}</span>
+                            <span class="font-weight-500 text-primary" id="id_rcv_tes" style="display:none">{{ $rcv->id_rcv }}</span>
                         </div>
                     </div>
                     <div class="col-12 col-xl-auto">
@@ -333,11 +333,36 @@
                             </div>
                         </div>
                     </div>
-
                     <div class="form-group">
                         <label class="small mb-1" for="keterangan">Masukan Keterangan Penerimaan</label>
                         <textarea class="form-control" name="keterangan" type="text" id="keterangan"
                             placeholder="Input Keterangan diterima">{{ $item->keterangan }}</textarea>
+                    </div>
+                    <hr>
+                    <div class="small mb-2">
+                        <span class="font-weight-500 text-dark">Penempatan Sparepart</span>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-md-6">
+                            <label class="small mb-1 mr-1" for="id_gudang">Pilih Gudang</label><span class="mr-4 mb-3" style="color: red">*</span>
+                            <select class="form-control" name="id_gudang"
+                                id="id_gudang">
+                                <option value="" holder>Pilih Gudang</option>
+                                @foreach ($gudang as $gudangs)
+                                <option value="{{ $gudangs->id_gudang }}">
+                                    {{ $gudangs->nama_gudang }}
+                                </option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label class="small mb-1 mr-1" for="id_rak">Pilih Rak</label><span class="mr-4 mb-3" style="color: red">*</span>
+                            <select class="form-control" name="id_rak" id="id_rak">
+                                <option value="" holder>Pilih Rak</option>
+                            </select>
+                            <span class="small" style="font-size: 13px"
+                            style="color: rgb(117, 114, 114)">(Pilih Gudang terlebih dahulu)</span>
+                        </div>
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -492,13 +517,6 @@
                 var satuan = $(data.find('.satuan')[0]).text()
                 var qty = $(data.find('.qty')[0]).text()
                 console.log(qty)
-                // var qty = data.find('input[name="qty"]').val()
-                // console.log(qty)
-                
-                // Langsung Selisih
-                // var selisih =parseInt(qty) - ( parseInt(qty_rcv)  | 0)
-                // $(`#selisih-${id_sparepart}`).val(selisih)
-
                 var harga_beli = $(data.find('.harga_beli')[0]).text()
                 var template = $($('#template_delete_button').html())
                 var table = $('#dataTablekonfirmasi').DataTable()
@@ -517,13 +535,6 @@
     function hapussparepart(element, id_sparepart) {
         console.log(id_sparepart)
         var table = $('#dataTablekonfirmasi').DataTable()
-
-        // Langsung Selisih Tapi Error
-        // var row2 = $(element).parent().parent()
-        // var qty_po = $(row2.children()[4]).text()
-        // var qty_rcv = $(row2.children()[5]).text()
-        // $(`#selisih-${id_sparepart}`).val(qty_po)
-        // Akses Parent Sampai <tr></tr>
         var row = $(element).parent().parent()
         table.row(row).remove().draw();
         alert('Data Sparepart Berhasil di Hapus')
@@ -571,6 +582,31 @@
                 }
             ]
         });
+
+        $('select[name="id_gudang"]').on('change', function () {
+            var id_gudang = $(this).val();
+            if (id_gudang) {
+                $.ajax({
+                    url: '/inventory/receiving/getrak/' + id_gudang,
+                    type: "GET",
+                    dataType: "json",
+                    success: function (data) {
+                        console.log(data)
+                        $('select[name="id_rak"]').empty();
+                        $('select[name="id_rak"]').append('<option value="" holder>Pilih Rak</option>')
+                        $.each(data, function (key, value) {
+                            $('select[name="id_rak"]').append('<option value="' + key + '">' + value + '</option>');
+                        });
+                    },
+                    error: function (response) {
+                        console.log(response)
+                    }
+                });
+            } else {
+                $('select[name="id_rak"]').empty();
+            }
+        });
+
     });
 
 </script>

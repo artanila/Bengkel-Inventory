@@ -311,6 +311,7 @@ Route::group(
                 Route::get('detail/{id_po}', 'RcvController@detailpo')
                     ->name('Rcv-detail-po');
                 Route::get('cetak-rcv/{id}', 'RcvController@CetakRcv')->name('cetak-rcv');
+                Route::get('receiving/getrak/{id}', 'RcvController@getrak');
             });
 
         // RETUR ---------------------------------------------------------------------- Retur

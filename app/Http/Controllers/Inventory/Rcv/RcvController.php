@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Inventory\Rcv;
 
 use App\Http\Controllers\Controller;
 use App\Model\Accounting\Akun;
+use App\Model\Inventory\Gudang;
 use App\Model\Inventory\Kartugudang\Kartugudang;
 use App\Model\Inventory\Purchase\PO;
 use App\Model\Inventory\Purchase\POdetail;
@@ -108,6 +109,8 @@ class RcvController extends Controller
         $blt = date('y-m');
 
         $kode_rcv = 'Rcv-'.$blt.'/'.$idbaru;
+        $gudang = Gudang::get();
+        $rak = Rak::get();
 
         // return $rcv;
         for($i = 0;  $i < count($rcv->Detailrcv); $i++ ){
@@ -122,7 +125,7 @@ class RcvController extends Controller
 
         // return $rcv;
 
-        return view('pages.inventory.rcv.create', compact('rcv','kode_rcv'));
+        return view('pages.inventory.rcv.create', compact('rcv','kode_rcv','rak','gudang'));
     }
 
     /**
@@ -253,5 +256,12 @@ class RcvController extends Controller
         return view('print.Inventory.cetakrcv', compact('rcv','now'));
     }
 
+    public function getrak($id)
+    {
+        $merk = Rak::where('id_gudang', '=', $id)->pluck('nama_rak', 'id_rak');
+        
+        // return $merk;
+        return json_encode($merk);
+    }
 }
 

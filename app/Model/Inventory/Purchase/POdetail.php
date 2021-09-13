@@ -11,8 +11,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class POdetail extends Model
 {
-  
-
     protected $table = "tb_inventory_detpo";
 
     protected $primaryKey = 'id_detail_po';
@@ -39,11 +37,6 @@ class POdetail extends Model
     public function Sparepart()
     {
         return $this->belongsTo(DetailSparepart::class, 'id_detail_sparepart','id_detail_sparepart');
-    }
-
-    protected static function booted()
-    {
-        static::addGlobalScope(new OwnershipScope);
     }
 
     

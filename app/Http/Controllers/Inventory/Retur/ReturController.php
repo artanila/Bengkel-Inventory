@@ -111,10 +111,10 @@ class ReturController extends Controller
         $kode_retur = 'RTR-'.$blt.'/'.$idbaru;
 
         for($i = 0;  $i < count($retur->Detailretur); $i++ ){
-            for($j = 0;  $j < count($retur->Supplier->Sparepart); $j++ ){
-               if ($retur->Detailretur[$i]->id_sparepart == $retur->Supplier->Sparepart[$j]->id_sparepart ){
-                $retur->Supplier->Sparepart[$j]->qty_retur = $retur->Detailretur[$i]->pivot->qty_retur;
-                $retur->Supplier->Sparepart[$j]->keterangan = $retur->Detailretur[$i]->pivot->keterangan;
+            for($j = 0;  $j < count($detailsparepart); $j++ ){
+               if ($retur->Detailretur[$i]->id_sparepart == $detailsparepart[$j]->id_sparepart ){
+                $detailsparepart[$j]->qty_retur = $retur->Detailretur[$i]->pivot->qty_retur;
+                $detailsparepart[$j]->keterangan = $retur->Detailretur[$i]->pivot->keterangan;
                };
             }
         }
@@ -164,7 +164,7 @@ class ReturController extends Controller
     }
 
     public function CetakRetur($id_retur){
-        $retur = Retur::with('Rcv.Detailrcv','Pegawai','Supplier.Sparepart.Merksparepart.Jenissparepart','Detailretur')->findOrFail($id_retur);
+        $retur = Retur::with('Rcv.Detailrcv','Pegawai','Supplier','Detailretur')->findOrFail($id_retur);
         // return $pelayanan;
         $now = Carbon::now();
         return view('print.Inventory.cetakretur', compact('retur','now'));

@@ -48,8 +48,6 @@ class PO extends Model
         return $this->belongsToMany(Sparepart::class, 'tb_inventory_detpo', 'id_po', 'id_sparepart')->withPivot('qty', 'qty_po_sementara', 'harga_satuan', 'total_harga');
     }
 
- 
-
     public function Sparepart()
     {
         return $this->hasMany(Sparepart::class, 'id_sparepart', 'id_sparepart');
