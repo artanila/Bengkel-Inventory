@@ -18,7 +18,6 @@ class DetailSparepart extends Model
 
     protected $fillable = [
     	'id_sparepart',
-        'id_gallery',
         'id_gudang',
         'id_rak',
         'qty_stok',
@@ -49,12 +48,12 @@ class DetailSparepart extends Model
         return $this->belongsTo(Rak::class, 'id_rak', 'id_rak');
     }
 
-    public function Gallery()
-    {
-        return $this->hasMany(Gallery::class, 'id_detail_sparepart');
-    }
+    // public function Gallery()
+    // {
+    //     return $this->hasMany(Gallery::class, 'id_detail_sparepart');
+    // }
 
-     public function Kartugudang()
+    public function Kartugudang()
     {
         return $this->hasMany(Kartugudang::class, 'id_detail_sparepart', 'id_detail_sparepart');
     }

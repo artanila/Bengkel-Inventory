@@ -250,6 +250,7 @@
                                                 colspan="1" aria-label="Salary: activate to sort column ascending"
                                                 style="width: 80px;">
                                                 Keterangan</th>
+                                            
                                             <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
                                                 colspan="1" aria-label="Actions: activate to sort column ascending"
                                                 style="width: 60px;">
@@ -263,10 +264,10 @@
                                             <td class="kode_sparepartedit"><span id="{{ $sparepart->kode_sparepart }}">{{ $sparepart->kode_sparepart }}</span></td>
                                             <td class="nama_sparepartedit">{{ $sparepart->nama_sparepart }}</td>
                                             <td class="merk_sparepartedit">{{ $sparepart->Merksparepart->merk_sparepart }}</td>
-                                            <td class="kemasanedit">{{ $sparepart->Kemasan->nama_kemasan }}</td>
                                             <td class="qtypoedit">{{ $sparepart->pivot->qty_po }}</td>
                                             <td class="qtyrcvedit">{{ $sparepart->pivot->qty_rcv }}</td>
                                             <td class="total_hargaedit">Rp {{ number_format($sparepart->pivot->harga_diterima,2,',','.')}}</td>
+                                            <td class="gudangedit">{{ $sparepart->Gudang->nama_gudang }}, {{ $sparepart->Rak->nama_rak }}</td>
                                             <td class="keterangan_edit">{{ $sparepart->pivot->keterangan }}</td>
                                             <td></td>
                                         </tr>
@@ -315,7 +316,7 @@
                                 Qty Pesanan: {{ $item->pivot->qty_po_sementara }}
                         </div>
                     </div>
-                    <hr class="my-4">
+                    <hr>
                     <div class="row">
                         <div class="form-group col-md-6">
                             <label class="small mb-1 mr-1" for="qty_rcv">Quantity Receive</label><span class="mr-4 mb-3" style="color: red">*</span>
@@ -345,8 +346,7 @@
                     <div class="row">
                         <div class="form-group col-md-6">
                             <label class="small mb-1 mr-1" for="id_gudang">Pilih Gudang</label><span class="mr-4 mb-3" style="color: red">*</span>
-                            <select class="form-control" name="id_gudang"
-                                id="id_gudang">
+                            <select class="form-control" name="id_gudang" id="id_gudang">
                                 <option value="" holder>Pilih Gudang</option>
                                 @foreach ($gudang as $gudangs)
                                 <option value="{{ $gudangs->id_gudang }}">
@@ -437,7 +437,9 @@
             var keterangan = form.find('textarea[name="keterangan"]').val()
             var harga_diterima = form.find('input[name="harga_diterima"]').val()
             var total_harga = qty_rcv * harga_diterima
-            var id_bengkel = $('#id_bengkel').text()
+            var id_gudang = form.find('select[name=id_gudang]').val()
+            var id_rak = form.find('select[name=id_rak]').val()
+            console.log(id_rak)
 
             if (qty_rcv == 0 | qty_rcv == '' | harga_diterima == 0 | harga_diterima == '') {
                 continue
@@ -446,14 +448,14 @@
                 var obj = {
                     id_sparepart: id_sparepart,
                     id_rcv: id_rcv,
-                    id_bengkel: id_bengkel,
                     qty_rcv: qty_rcv,
                     qty_po: qty_po,
                     keterangan: keterangan,
                     harga_diterima: harga_diterima,
                     total_harga: total_harga,
+                    id_gudang: id_gudang,
+                    id_rak: id_rak
                 }
-
                 dataform2.push(obj)
             }
         }
@@ -516,7 +518,7 @@
                 var merk_sparepart = $(data.find('.merk_sparepart')[0]).text()
                 var satuan = $(data.find('.satuan')[0]).text()
                 var qty = $(data.find('.qty')[0]).text()
-                console.log(qty)
+                // console.log(qty)
                 var harga_beli = $(data.find('.harga_beli')[0]).text()
                 var template = $($('#template_delete_button').html())
                 var table = $('#dataTablekonfirmasi').DataTable()
@@ -548,7 +550,6 @@
         var row = $(element).parent().parent()
         var children = $(row).children()[1]
         var kode = $($(children).children()[0]).html().trim()
-        
         $(`#${$.escapeSelector(kode)}-button`).trigger('click');
     }
 
