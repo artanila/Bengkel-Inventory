@@ -23,7 +23,7 @@ class KartugudangController extends Controller
     public function index()
     {
         $sparepart = DetailSparepart::with([
-            'Sparepart', 'Gudang','Rak','Gallery'
+            'Sparepart', 'Gudang','Rak'
         ])->get();
  
         $today = Carbon::now()->isoFormat('dddd');
