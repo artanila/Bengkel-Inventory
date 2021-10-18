@@ -37,6 +37,10 @@ class DetailSparepart extends Model
     {
         return $this->belongsTo(Sparepart::class, 'id_sparepart', 'id_sparepart');
     }
+    public function Spareparts()
+    {
+        return $this->belongsTo(DetailSparepart::class, 'id_detail_sparepart', 'id_detail_sparepart');
+    }
 
     public function Gudang()
     {

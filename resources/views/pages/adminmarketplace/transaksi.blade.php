@@ -185,7 +185,7 @@
                                 @forelse ($item->Detailtransaksi as $sparepart)
                                 <tr role="row" class="odd">
                                     <th scope="row" class="small" class="sorting_1">{{ $loop->iteration}}</th>
-                                    <td>{{ $sparepart->nama_sparepart }}</td>
+                                    <td>{{ $sparepart->Sparepart->nama_sparepart }}</td>
                                     <td>{{ $sparepart->pivot->jumlah_produk }}</td>
 
                                 </tr>
